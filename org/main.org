@@ -6,6 +6,8 @@
 #+todo: PATH | DONE
 
 * Log
+** [2022-12-25 Sun 21:31] v0.0.2
+Added py.typed
 ** [2022-12-25 Sun] Uploaded to github and pypi
 ** [2022-12-25 Sun] v0.0.1
 ** [2022-12-25 Sun] Project creation
@@ -23,7 +25,7 @@ kombini
 ** Project version
 #+name: project-version
 #+begin_src conf
-0.0.1
+0.0.2
 #+end_src
 ** Description
 #+name: project-description
