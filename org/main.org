@@ -6,8 +6,11 @@
 #+todo: PATH | DONE
 
 * Log
+** [2022-12-25 Sun] Uploaded to github and pypi
 ** [2022-12-25 Sun] v0.0.1
 ** [2022-12-25 Sun] Project creation
+* [[https://github.com/chunglak/kombini][GitHub - chunglak/kombini]]
+* [[https://pypi.org/project/kombini/][kombini · PyPI]]
 * Configuration
 :PROPERTIES:
 :HEADER-ARGS+: :tangle no
@@ -26,6 +29,14 @@ kombini
 #+name: project-description
 #+begin_src conf
 Miscellaneous convenience functions
+#+end_src
+** Long description
+#+name: project-long-description
+#+begin_src markdown
+## Installation
+```shell
+$ pip install <<project-name>>
+```
 #+end_src
 ** URL
 #+name: project-url
@@ -58,7 +69,12 @@ GPL-3.0-or-later
 #+begin_src conf
 3.10
 #+end_src
-* Tangled files
+** Dependencies
+#+name: project-dependencies
+#+begin_src conf
+#+end_src
+* Default tangled files
+Don't add anything here, it's common to all projects
 ** PATH .envrc
 :PROPERTIES:
 :file-path: "/home/chunglak/projects/kombini/.envrc"
@@ -90,7 +106,7 @@ PATH_add bin
 # python
 __pycache__
 # egg
-/src/<<project-name>>.egg-info
+/src/*.egg-info
 #+end_src
 ** PATH pyproject.toml
 :PROPERTIES:
@@ -129,7 +145,11 @@ python_requires = >=<<minimal-python-version>>
 package_dir =
     =src
 packages = find:
+zip_safe = True
+include_package_data = True
 
+install_requires =
+    <<project-dependencies>>
 # install_requires =
 #     pandas == 1.4.1
 #     PyYAML >= 6.0
@@ -152,6 +172,10 @@ packages = find:
 where = src
 exclude =
     test*
+
+[options.package_data]
+,* =
+  ,*.typed
 #+end_src
 ** PATH README.md
 :PROPERTIES:
@@ -162,10 +186,8 @@ exclude =
 #+begin_src markdown
 # <<project-name>>
 <<project-description>>
-## Installation
-```shell
-$ pip install <<project-name>>
-```
+
+<<project-long-description>>
 #+end_src
 ** PATH .python-version
 :PROPERTIES:
@@ -239,6 +261,7 @@ PACKAGES=(
   twine # to publish to pypi
   pytest # testing framework
   # Package dependencies
+  <<project-dependencies>>
 )
 pip install --upgrade pip
 pip install wheel
@@ -247,6 +270,20 @@ pip install "${PACKAGES[@]}"
 # Install jupyter kernel
 pip install ipykernel
 ipython kernel install --user --name=$venv
+#+end_src
+*** PATH upload-to-pypi
+:PROPERTIES:
+:file-path: "/home/chunglak/projects/kombini/bin/upload-to-pypi"
+:file-path-link: [[file:/home/chunglak/projects/kombini/bin/upload-to-pypi][upload-to-pypi]]
+:END:
+#+call: make-file-path()
+#+begin_src bash :shebang #!/bin/bash
+set -eu
+
+cd $PROJECT_ROOT
+rm -rf dist
+pyproject-build
+twine upload dist/*
 #+end_src
 ** PATH src
 :PROPERTIES:
@@ -272,15 +309,15 @@ Put test suite here
 :END:
 #+call: make-file-path()
 No need to create this dir: it should pre-exist
-*** PATH testo.org
+*** PATH template.org
 :PROPERTIES:
-:file-path: "/home/chunglak/projects/kombini/org/testo.org"
-:file-path-link: [[file:/home/chunglak/projects/kombini/org/testo.org][testo.org]]
+:file-path: "/home/chunglak/projects/kombini/org/template.org"
+:file-path-link: [[file:/home/chunglak/projects/kombini/org/template.org][template.org]]
 :END:
 #+call: make-file-path()
 Make copies of this file
 #+begin_src org
-,#+title: Testo
+,#+title: Template
 ,#+property: header-args:jupyter-python :kernel <<project-name>> :session testo
 
 ,* Init
@@ -324,6 +361,14 @@ def func():
 runf(func)  # pylint: disable=undefined-variable
 ,#+end_src
 #+end_src
+* Project-specific tangled files
+** PATH bin
+:PROPERTIES:
+:header-args:bash: :shebang #!/bin/bash
+:file-path: "/home/chunglak/projects/kombini/bin"
+:file-path-link: [[file:/home/chunglak/projects/kombini/bin][bin]]
+:END:
+#+call: make-file-path()
 * Elisp
 ** PATH make-file-path
 :PROPERTIES:
