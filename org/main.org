@@ -5,12 +5,7 @@
 #+PROPERTY: file-path (file-name-directory (directory-file-name (file-name-directory (buffer-file-name))))
 #+todo: PATH | DONE
 
-* Log
-** [2022-12-25 Sun 21:31] v0.0.2
-Added py.typed
-** [2022-12-25 Sun] Uploaded to github and pypi
-** [2022-12-25 Sun] v0.0.1
-** [2022-12-25 Sun] Project creation
+* [[id:3a7c3139-ea32-4eaa-9a5b-bf16eb715381][Zettel]]
 * [[https://github.com/chunglak/kombini][GitHub - chunglak/kombini]]
 * [[https://pypi.org/project/kombini/][kombini · PyPI]]
 * Configuration
